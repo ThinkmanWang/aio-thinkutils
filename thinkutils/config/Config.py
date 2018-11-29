@@ -44,3 +44,8 @@ class ThinkConfig:
 #     config.read(os.path.dirname(os.path.abspath(__file__)) + "/app.properties")
 #
 #     print(config.get("mysql", "host"))
+#
+#     config1 = ThinkConfig.instance()
+#     print(config1.get("mysql", "host"))
+#
+#     print(config == config1)
