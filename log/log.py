@@ -1,18 +1,14 @@
-import os
 import sys
 
-import logging
 import logging.handlers
 from rainbow_logging_handler import RainbowLoggingHandler
-from logging.handlers import TimedRotatingFileHandler
 
 import logging
 import logging.handlers
 import os
 import time
 import re
-from aiothinkutils.common_utils.FileUtils import *
-from aiothinkutils.common_utils.singleton import Singleton
+from thinkutils.common_utils.singleton import Singleton
 
 class ParallelTimedRotatingFileHandler(logging.handlers.TimedRotatingFileHandler):
     def __init__(self, filename, when='h', interval=1, backupCount=0, encoding=None, delay=False, utc=False, postfix = ".log"):

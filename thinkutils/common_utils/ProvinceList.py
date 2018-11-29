@@ -2,9 +2,8 @@
 
 import json
 
-from aiothinkutils.common_utils.StringBuilder import *
-import threading
-from aiothinkutils.common_utils.singleton import Singleton, ThreadSafeSingleton
+from thinkutils.common_utils.singleton import Singleton
+from thinkutils.common_utils.StringBuilder import StringBuilder
 
 @Singleton
 class ProvinceList(object):
