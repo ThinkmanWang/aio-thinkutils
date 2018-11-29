@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+yolk = "*"
+tornado = "==5.1.1"
+aioredis = "*"
+aiomysql = "*"
+logutils = "*"
+rainbow = "*"
+rainbow-logging-handler = "*"
+redis = "*"
+requests = "*"
+watchdog = "*"
+aiokafka = "*"
+pycrypto = "*"
+pymysql = "*"
+aiojobs = "*"
+aiocron = "*"
+apscheduler = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.7"

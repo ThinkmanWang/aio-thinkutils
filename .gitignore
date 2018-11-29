@@ -1,0 +1,4 @@
+*.pyc
+.idea
+.python-version
+Pipfile.lock
