@@ -4,7 +4,9 @@ import json
 
 from aiothinkutils.common_utils.StringBuilder import *
 import threading
+from aiothinkutils.common_utils.singleton import Singleton, ThreadSafeSingleton
 
+@Singleton
 class ProvinceList(object):
 
     def __init__(self):
@@ -24,8 +26,8 @@ class ProvinceList(object):
 
     def get_province_id(self, szProVinceName):
         for province in self.__province_list:
-            if szProVinceName in province["name"].encode("utf-8"):
-            # if province["name"].encode("utf-8").contains(szProVinceName):
+            if szProVinceName in province["name"]:
+            # if province["name"].contains(szProVinceName):
                 return province["id"]
 
         return None
@@ -46,7 +48,7 @@ class ProvinceList(object):
     def get_city_id(self, szCityName):
         for province in self.__province_list:
             for city in province["citys"]:
-                if szCityName in city["name"].encode("utf-8"):
+                if szCityName in city["name"]:
                 # if city["name"].contains(szCityName):
                     return city["id"]
 
@@ -63,24 +65,16 @@ class ProvinceList(object):
     def __str__(self):
         sb = StringBuilder()
         for province in self.get_province_list():
-            sb.append(province["name"].encode("utf-8") + "\n")
+            sb.append(province["name"] + "\n")
             for city in province["citys"]:
-                sb.append("|----" + city["name"].encode("utf-8") + "\n")
+                sb.append("|----" + city["name"] + "\n")
                 for country in city["countrys"]:
-                    sb.append("|--------" + country["name"].encode("utf-8") + "\n")
+                    sb.append("|--------" + country["name"] + "\n")
 
         return str(sb)
 
-g_provinces = ProvinceList()
-
-# def main():
-#     provinces = ProvinceList.Instance()
-#     print provinces
-#
-#     print provinces.get_province_id(u"北京".encode('utf-8'))
-#     print provinces.get_province_name("330000")
-#
-#     print provinces.get_city_id("天津市 移动</center><script type = 'text/javascript' id ='1qa2ws' charset='utf-8'")
-#
 # if __name__ == '__main__':
-#     main()
+#     province = ProvinceList.instance()
+#
+#     print(province.get_province_id("北京"))
+#     print(province.get_province_name("330000"))
