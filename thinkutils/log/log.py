@@ -166,7 +166,11 @@ class ThinkLogger:
 
         return cls.g_logger
 
+g_logger = ThinkLogger.get_logger()
+
 # if __name__ == '__main__':
 #     logger = ThinkLogger.get_logger()
 #     logger.debug("Hello World %s" % ("1234", ))
+#
+#     g_logger.debug("FXXK")
 
