@@ -32,6 +32,7 @@ class ThinkRedisPool(object):
                                                   , password=ThinkConfig.get_default_config().get("redis", "password")
                                                   , port=ThinkConfig.get_default_config().get("redis", "port")
                                                   , db=ThinkConfig.get_default_config().get("redis", "db"))
+        return cls.g_conn_pool
 
 
 # if __name__ == '__main__':
