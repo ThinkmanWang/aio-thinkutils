@@ -7,8 +7,10 @@ import configparser
 
 from thinkutils.common_utils.singleton import Singleton
 
-@Singleton
 class ThinkConfig:
+
+    m_myConfig = None
+
     def __init__(self):
         self.config = configparser.ConfigParser()
 
@@ -39,13 +41,22 @@ class ThinkConfig:
         except Exception as e:
             return default
 
+    @classmethod
+    def get_default_config(cls):
+        if cls.m_myConfig is None:
+            config = ThinkConfig()
+            config.read(os.path.dirname(os.path.abspath(__file__)) + "/app.properties")
+
+            cls.m_myConfig = config
+
+        return cls.m_myConfig
+
 # if __name__ == '__main__':
-#     config = ThinkConfig.instance()
-#     config.read(os.path.dirname(os.path.abspath(__file__)) + "/app.properties")
+#     config = ThinkConfig.get_default_config()
 #
 #     print(config.get("mysql", "host"))
 #
-#     config1 = ThinkConfig.instance()
-#     print(config1.get("mysql", "host"))
+#     config1 = ThinkConfig.get_default_config()
 #
 #     print(config == config1)
+

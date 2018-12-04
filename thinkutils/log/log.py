@@ -9,6 +9,7 @@ import os
 import time
 import re
 from thinkutils.common_utils.singleton import Singleton
+from thinkutils.common_utils.FileUtils import *
 
 class ParallelTimedRotatingFileHandler(logging.handlers.TimedRotatingFileHandler):
     def __init__(self, filename, when='h', interval=1, backupCount=0, encoding=None, delay=False, utc=False, postfix = ".log"):
@@ -121,12 +122,14 @@ class ParallelTimedRotatingFileHandler(logging.handlers.TimedRotatingFileHandler
                     newRolloverAt = newRolloverAt + 3600
         self.rolloverAt = newRolloverAt
 
-@Singleton
 class ThinkLogger:
-    def __init__(self):
-        self.logger = self.setup_custom_logger()
 
-    def setup_custom_logger(self):
+    g_logger = None
+
+    def __init__(self):
+        self.logger = self._setup_custom_logger()
+
+    def _setup_custom_logger(self):
         LOG_PATH = './log'
         try:
             os.mkdir(LOG_PATH)
@@ -156,19 +159,14 @@ class ThinkLogger:
         # Add file handler
         return logger
 
-    def debug(self, msg, *args, **kwargs):
-        self.logger.debug(msg, *args, **kwargs)
+    @classmethod
+    def get_logger(cls):
+        if cls.g_logger is None:
+            cls.g_logger = ThinkLogger().logger
 
-    def info(self, msg, *args, **kwargs):
-        self.logger.info(msg, *args, **kwargs)
+        return cls.g_logger
 
-    def warning(self, msg, *args, **kwargs):
-        self.logger.warning(msg, *args, **kwargs)
-
-    def error(self, msg, *args, **kwargs):
-        self.logger.error(msg, *args, **kwargs)
-#
 # if __name__ == '__main__':
-#     myLogger = ThinkLogger.instance()
-#     myLogger.debug("Hello World %s" % ("1234", ))
+#     logger = ThinkLogger.get_logger()
+#     logger.debug("Hello World %s" % ("1234", ))
 
