@@ -18,7 +18,7 @@ class TCPConnection(object):
         self.__address = address
 
         self.__stream.set_close_callback(self.on_close)
-        self.on_connect()
+        self.read_message()
 
     async def fetch(self, session, url):
         async with session.get(url) as response:
@@ -37,7 +37,7 @@ class TCPConnection(object):
             self.__stream = None
 
     @gen.coroutine
-    def on_connect(self):
+    def read_message(self):
 
         try:
             szData = yield self.__stream.read_until(EOF)
@@ -54,7 +54,7 @@ class TCPConnection(object):
             pass
 
         if self.__stream is not None and False == self.__stream.closed():
-            self.on_connect()
+            self.read_message()
 
 class MyTorEchoServer(TCPServer):
 
