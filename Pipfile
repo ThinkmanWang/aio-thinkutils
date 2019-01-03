@@ -25,6 +25,7 @@ aiohttp = "*"
 aiohttp-requests = "*"
 yarl = "*"
 aiorwlock = "*"
+watchgod = "*"
 
 [dev-packages]
 
