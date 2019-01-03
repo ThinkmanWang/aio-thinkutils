@@ -14,7 +14,7 @@ class ThinkMysql:
                               , maxcached = int(ThinkConfig.get_default_config().get("mysql", "maxconnections"))
                               , host=ThinkConfig.get_default_config().get("mysql", "host")
                               , user=ThinkConfig.get_default_config().get("mysql", "user")
-                              , passwd=ThinkConfig.get_default_config().get("mysql", "password")
+                              , password=ThinkConfig.get_default_config().get("mysql", "password")
                               , db=ThinkConfig.get_default_config().get("mysql", "db")
                               , port=int(ThinkConfig.get_default_config().get("mysql", "port"))
                               , maxconnections=int(ThinkConfig.get_default_config().get("mysql", "maxconnections"))
