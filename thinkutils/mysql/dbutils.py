@@ -10,8 +10,8 @@ class ThinkMysql:
     def get_default_conn_pool(cls):
         if cls.g_conn_pool is None:
             cls.g_conn_pool = PooledDB(pymysql
-                              , mincached = int(ThinkConfig.get_default_config().get("mysql", "maxconnections")) / 2
-                              , maxcached = int(ThinkConfig.get_default_config().get("mysql", "maxconnections"))
+                              , mincached = int(ThinkConfig.get_default_config().get_int("mysql", "maxconnections") / 2)
+                              , maxcached = int(ThinkConfig.get_default_config().get_int("mysql", "maxconnections"))
                               , host=ThinkConfig.get_default_config().get("mysql", "host")
                               , user=ThinkConfig.get_default_config().get("mysql", "user")
                               , password=ThinkConfig.get_default_config().get("mysql", "password")
@@ -23,3 +23,21 @@ class ThinkMysql:
 
         return cls.g_conn_pool
 
+# def main():
+#     conn = ThinkMysql.get_default_conn_pool().connection()
+#     cur = conn.cursor(pymysql.cursors.DictCursor)
+#     try:
+#         cur.execute("SELECT 1")
+#         rows = cur.fetchall()
+#
+#         print("rows count: ", len(rows))
+#         row = rows[0]
+#
+#         print("return: ", row)
+#     except Exception as e:
+#         pass
+#     finally:
+#         cur.close()
+#
+# if __name__ == '__main__':
+#     main()

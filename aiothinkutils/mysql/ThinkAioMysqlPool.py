@@ -29,12 +29,12 @@ class ThinkAioMysqlPool(object):
 # async def main():
 #     conn_pool = await ThinkAioMysqlPool.get_default_conn_pool()
 #     async with conn_pool.acquire() as conn:
-#         async with conn.cursor() as cur:
+#         async with conn.cursor(aiomysql.cursors.DictCursor) as cur:
 #             await cur.execute("SELECT 42;")
 #             print(cur.description)
 #
-#             (r,) = await cur.fetchone()
-#             assert r == 42
+#             row = await cur.fetchone()
+#             print(row)
 #
 # if __name__ == '__main__':
 #     asyncio.get_event_loop().run_until_complete(main())
