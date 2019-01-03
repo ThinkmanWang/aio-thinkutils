@@ -21,6 +21,10 @@ aiojobs = "*"
 aiocron = "*"
 apscheduler = "*"
 dbutils = "*"
+aiohttp = "*"
+aiohttp-requests = "*"
+yarl = "*"
+aiorwlock = "*"
 
 [dev-packages]
 
